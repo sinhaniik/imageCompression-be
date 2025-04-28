@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 import { connectDB } from './config/db';
 import { logger } from './utils/logger';
 import { errorHandler } from './middlewares/errorHandler';
-import healthRoutes from './routes/health';
-import userRoutes from './routes/user';
+import compressRoutes from './routes/compress';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -13,6 +13,8 @@ const app: Application = express();
 // Connect to MongoDB
 connectDB();
 
+// Middlewares
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,8 +25,7 @@ app.use((req: Request, res: Response, next) => {
 });
 
 // Routes
-app.use('/api/health', healthRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api', compressRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
