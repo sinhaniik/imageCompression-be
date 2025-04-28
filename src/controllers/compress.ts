@@ -16,10 +16,10 @@ export const compressImage = async (req: Request, res: Response) => {
         }
 
         // Use sharp to compress
-        let quality = 80; // Start quality
+        let quality = 80; // Start quality in %
         let compressedBuffer = await sharp(file.buffer)
-            .jpeg({ quality })
-            .toBuffer();
+            .jpeg({ quality }) //changes any image file to jpeg
+            .toBuffer(); // saves to buffer
 
         // Try reducing quality until under target size
         while (compressedBuffer.length / 1024 > targetSizeKB && quality > 10) {
