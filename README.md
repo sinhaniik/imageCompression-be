@@ -94,3 +94,10 @@ http://localhost:5000
 ### POST `/api/compress`
 
 Uploads and compresses an image to a target size.
+
+## 🚀 Future Improvements
+
+* Add support for PNG and WebP compression
+* Allow multiple images at once (bulk compression)
+* Provide different compression levels (high, medium, low)
+* Build a simple frontend for easier user experience
